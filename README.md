@@ -1,24 +1,48 @@
-# README
+# Blog App
+> The Blog app is a classic example of a blog website. It's a functional website that shows the list of posts and empower readers to interact with them by adding comments and liking posts. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 🛠️ Built With
 
-Things you may want to cover:
+- Ruby on Rails
 
-* Ruby version
+## 🧮 Prerequisites
 
-* System dependencies
+### Install
+- Node.js
+- Yarn
+- Ruby
+- Ruby on Rails
 
-* Configuration
+### Setup
 
-* Database creation
+Follow these steps on your console to properly clone this repository on your desktop:
 
-* Database initialization
+```
+$ cd desktop
+$ git clone 'repo_path'
+$ cd 'repo_name'
+$ code .
+Run 'ruby file_name' to see outputs in the console.
+Run 'rubocop' to check linter offenses.
+```
 
-* How to run the test suite
+## 👤 Authors
 
-* Services (job queues, cache servers, search engines, etc.)
+### Mike Martínez
 
-* Deployment instructions
+- GitHub: [@mikemtzp](https://github.com/mikemtzp)
+- Twitter: [@mikemtzp](https://twitter.com/mikemtzp)
+- LinkedIn: [Mike Martínez](https://www.linkedin.com/in/mike-mart%C3%ADnez/)
 
-* ...
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+Feel free to check the [issues page](https://github.com/mikemtzp/Blog_app/issues).
+
+## ⭐️ Show your support
+
+Give a ⭐️ if you like this project!
+
+## 📝 License
+
+[MIT License](https://github.com/mikemtzp/Blog_app/blob/dev/LICENSE)

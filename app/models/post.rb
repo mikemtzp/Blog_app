@@ -1,7 +1,11 @@
 class Post < ApplicationRecord
   belongs_to :author, class_name: 'User'
-  has_many :likes
-  has_many :comments
+  has_many :likes, inverse_of: :post
+  has_many :comments, inverse_of: :post
+
+  validates :title, presence: true
+  validates :title, length: { maximum: 250, too_long: '%<count> characters is the maximum allowed' }
+  validates :comments_counter, :likes_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   after_save :update_post_counter
 

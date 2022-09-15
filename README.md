@@ -26,7 +26,7 @@ Run 'ruby file_name' to see outputs in the console.
 Run 'rubocop' to check linter offenses.
 ```
 
-## 👤 Authors
+## 👤 Author
 
 ### Mike Martínez
 

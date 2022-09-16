@@ -11,45 +11,58 @@ RSpec.describe Post, type: :model do
 
   describe 'validation' do
     it 'title should be present' do
-      subject.title = nil
-      expect(subject).not_to be_valid
+      post.title = nil
+      expect(post).not_to be_valid
     end
 
     it 'title should not be too long' do
-      subject.title = 'm' * 251
-      expect(subject).not_to be_valid
+      post.title = 'm' * 251
+      expect(post).not_to be_valid
     end
 
     it 'comments counter should be an integer' do
-      subject.comments_counter = nil
-      expect(subject).not_to be_valid
+      post.comments_counter = nil
+      expect(post).not_to be_valid
     end
 
     it 'comments counter should be an integer greater or equal to zero' do
-      subject.comments_counter = -1
-      expect(subject).not_to be_valid
+      post.comments_counter = -1
+      expect(post).not_to be_valid
     end
 
     it 'likes counter should be an integer' do
-      subject.likes_counter = nil
-      expect(subject).not_to be_valid
+      post.likes_counter = nil
+      expect(post).not_to be_valid
     end
 
     it 'likes counter should be an integer greater or equal to zero' do
-      subject.likes_counter = -1
-      expect(subject).not_to be_valid
+      post.likes_counter = -1
+      expect(post).not_to be_valid
     end
   end
 
   describe 'method' do
-    it 'recent_comments length should be between 0 and 5' do
-      expect(subject.recent_comments.length).to be_between(0, 5)
+    before do
+      6.times do |comment|
+        Comment.create(
+          post:,
+          author: user,
+          text: "Comment number #{comment}"
+        )
+      end
+    end
+
+    it 'recent_comments should return 5 most recent comments for a post' do
+      expect(post.recent_comments.length).to eq(5)
+      expect(post.comments_counter).to eq(6)
     end
 
     it 'update_post_counter should updates the posts counter for a user' do
-      expect(user.posts_counter).to eq(0)
+      expect(user.posts_counter).to eq(1)
       post.send(:update_post_counter)
       expect(user.posts_counter).to eq(2)
+      post.send(:update_post_counter)
+      expect(user.posts_counter).to eq(3)
     end
   end
 end

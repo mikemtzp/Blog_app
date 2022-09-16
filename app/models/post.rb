@@ -18,6 +18,6 @@ class Post < ApplicationRecord
 
   # A method that updates the posts counter for a user
   def update_post_counter
-    author.increment!(:post_counter)
+    author.increment!(:posts_counter)
   end
 end

@@ -1,16 +1,23 @@
 class Post < ApplicationRecord
   belongs_to :author, class_name: 'User'
-  has_many :likes
-  has_many :comments
+  has_many :likes, inverse_of: :post
+  has_many :comments, inverse_of: :post
 
-  # A method that updates the posts counter for a user.
-  def update_post_counter
-    user = User.find(author_id)
-    user.update(posts_counter: Post.where(author_id:).count)
-  end
+  validates :title, presence: true
+  validates :title, length: { maximum: 250, too_long: '%<count> characters is the maximum allowed' }
+  validates :comments_counter, :likes_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  # A method which returns the 5 most recent comments for a given post.
+  after_save :update_post_counter
+
+  # A method that returns the 5 most recent comments for a given post.
   def recent_comments
     Comment.where(post_id: self).order('created_at DESC').limit(5)
+  end
+
+  private
+
+  # A method that updates the posts counter for a user
+  def update_post_counter
+    author.increment!(:posts_counter)
   end
 end

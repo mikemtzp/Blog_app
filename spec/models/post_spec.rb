@@ -54,6 +54,9 @@ RSpec.describe Post, type: :model do
 
     it 'recent_comments should return 5 most recent comments for a post' do
       expect(post.recent_comments.length).to eq(5)
+    end
+
+    it 'should return 6 in comments counter' do
       expect(post.comments_counter).to eq(6)
     end
 

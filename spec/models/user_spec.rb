@@ -37,5 +37,9 @@ RSpec.describe User, type: :model do
     it 'recent_posts should return 3 most recent posts for a user' do
       expect(user.recent_posts.length).to eq(3)
     end
+
+    it 'should return 4 in posts counter' do
+      expect(user.posts_counter).to eq(4)
+    end
   end
 end

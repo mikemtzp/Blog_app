@@ -1,1 +1,22 @@
-<h1>Here is a specific user for a given user id</h1>
+<div class="container">
+  <div class="user">
+    <img src=<% @user.photo %>>
+    <h1><%= @user.name %></h1>
+    <p>Number of posts: <%= @user.posts_counter %></p>
+  </div>
+
+  <div class="bio">
+  <h2>Bio</h2>
+  <p><%= @user.bio %></p>
+  </div>
+
+  <% @posts.each do |post| %>
+    <% if @user.id == post.author_id %>
+      <div>
+        <h3><%= post.title %></h3>
+        <p><%= post.text %></p>
+        <p>Comments: <%= post.comments_counter %> | Likes: <%= post.likes_counter %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -26,6 +26,43 @@ Run 'ruby file_name' to see outputs in the console.
 Run 'rubocop' to check linter offenses.
 ```
 
+Create database for the project with `bin/rails db:create`, otherwise create databases manually in PostgreSQL.
+
+If necessary, add username and password in `config/database.yml` for development and test:
+```
+development:
+  <<: *default
+  database: Blog_app_development
+  host: ''
+  username:
+  password:
+  
+  test:
+  <<: *default
+  database: Blog_app_test
+  username:
+  password:
+```
+
+Add the following gems into your `Gemfile` development and test groups:
+
+```
+group :development, :test do
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'ffi'
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
+end
+```
+
+Install all gems `bundle install`
+
+Set up RSpec in your app and create the Spec folder `rails g rspec:install`
+
+Run the migration into your testing environment `rails db:migrate RAILS_ENV=test`
+
+Run all tests with description `rspec spec --format documentation`
+
 ## 👤 Author
 
 ### Mike Martínez

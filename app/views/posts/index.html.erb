@@ -1,4 +1,4 @@
-<h1>Posts show</h1>
+<%= link_to "Go to user", user_path(@user.id) %>
 
 <div class="container">
   <div class="user">
@@ -8,16 +8,18 @@
   </div>
 
   <% @posts.each do |post| %>
-    <div>
-      <h3><%= post.title %></h3>
-      <p><%= post.text %></p>
-      <p>Comments: <%= post.comments_counter %> | Likes: <%= post.likes_counter %></p>
-    </div>
+    <a href="/users/<%=@user.id %>/posts/<%= post.id %>">
+      <div>
+        <h2><%= post.title %></h2>
+        <p><%= post.text %></p>
+        <p>Comments: <%= post.comments_counter %> | Likes: <%= post.likes_counter %></p>
+      </div>
 
-    <ul>
-    <% post.recent_comments.each do |comment| %>
-      <li><%= @user.name %>: <%= comment.text %></li>
-    <% end %>
-    </ul>
+      <ul>
+      <% post.recent_comments.each do |comment| %>
+        <li><%= @user.name %>: <%= comment.text %></li>
+      <% end %>
+      </ul>
+    </a>
   <% end %>
 </div>

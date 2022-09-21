@@ -10,13 +10,12 @@
   <p><%= @user.bio %></p>
   </div>
 
-  <% @posts.each do |post| %>
-    <% if @user.id == post.author_id %>
+  <% @user.recent_posts.each do |post| %>
       <div>
         <h3><%= post.title %></h3>
         <p><%= post.text %></p>
         <p>Comments: <%= post.comments_counter %> | Likes: <%= post.likes_counter %></p>
       </div>
-    <% end %>
   <% end %>
-</div>
+
+  <button>See all posts</button>

@@ -1,12 +1,13 @@
-<div class="container">
 <% @users.each do |user| %>
-  <a href="/users/<%= user.id %>">
-  <div>
-    <img src=<%= user.photo %>>
-    <div>
-      <h1><%= user.name %></h1>
-      <p>Number of posts: <%= user.posts_counter %></p>
+<div class="container">
+  <a href="/users/<%= user.id %>" class="user-link">
+  <div class="user">
+    <img src=<%= user.photo %> class="user-photo">
+    <div class="user-info">
+      <h1 class="user-info__name"><%= user.name %></h1>
+      <p class="user-info__posts-counter">Number of posts: <%= user.posts_counter %></p>
     </div>
   </div>
-<% end %>
+  </a>
 </div>
+<% end %>

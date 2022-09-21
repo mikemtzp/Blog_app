@@ -8,6 +8,6 @@ class User < ApplicationRecord
 
   # A method that returns the 3 most recent posts for a given user.
   def recent_posts
-    Post.where(author_id: self).order('created_at ASC').limit(3)
+    Post.where(author_id: self).order('created_at DESC').limit(3)
   end
 end

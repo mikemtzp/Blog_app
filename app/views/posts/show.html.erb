@@ -1,17 +1,15 @@
 <button class="back-link"><%= link_to "Go to all posts", :back %></button>
 
-<div class="container">
-  <div>
-    <div>
-      <h1><%= @post.title %> by <%= @user.name %></h1>
-      <p>Comments: <%= @post.comments_counter %> | Likes: <%= @post.likes_counter %></p>
-    </div>
-    <p><%= @post.text %></p>
+<div class="section">
+  <div class="section-post">
+      <h1 class="section-post__title"><%= @post.title %> by <%= @user.name %></h1>
+      <p class="section-post__counter">Comments: <%= @post.comments_counter %> | Likes: <%= @post.likes_counter %></p>
+      <p class="section-post__text"><%= @post.text %></p>
   </div>
 
-  <ul>
-    <% @post.comments.each do |comment| %>
-      <li><%= @user.name %>: <%= comment.text %></li>
-    <% end %>
-  </ul>
+    <ul class="section-post">
+      <% @post.comments.each do |comment| %>
+        <li class="comment"><%= @user.name %>: <%= comment.text %></li>
+      <% end %>
+    </ul>
 </div>

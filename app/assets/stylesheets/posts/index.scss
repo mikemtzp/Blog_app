@@ -1,0 +1,20 @@
+.post-link {
+  text-decoration: none;
+  color: rgba($color: #ffffff, $alpha: 0.6);
+  transition: 0.5s;
+
+  &:hover {
+    color: rgba($color: #ffffff, $alpha: 1.0);
+    text-decoration: underline;
+    transition: 0.5s;
+  }
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  list-style: none;
+}

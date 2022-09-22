@@ -2,7 +2,7 @@ $img-size: 8rem;
 $font-color: #fff;
 
 html {
-  height: 100%;
+  height: fit-content;
 }
 
 body {
@@ -33,16 +33,21 @@ h1, p {
     display: flex;
     width: 100%;
     cursor: pointer;
-    padding: 1rem;
+    padding: 1rem 2rem;
     background-color: rgba(0,0,0,0.5);
-  transition: 0.5s;
-  
+    transition: 0.5s;
+
+    &:hover {
+      background-color: rgba(0,0,0,0.7);
+      transition: 0.5s;
+    }
+
     &-photo {
       width: $img-size;
       height: $img-size;
       border-radius: 100%;
     }
-  
+
     &-info {
       display: flex;
       justify-content: space-between;
@@ -50,20 +55,14 @@ h1, p {
       color: $font-color;
       width: 100%;
       margin-left: 2rem;
-  
+
       &__name {
         align-self: center;
       }
-  
+
       &__posts-counter {
         align-self: flex-end;
       }
     }
   }
 }
-
-.user:hover {
-  background-color: rgba(0,0,0,0.7);
-  transition: 0.5s;
-}
-

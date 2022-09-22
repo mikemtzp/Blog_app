@@ -1,1 +1,30 @@
-<h1>Here is a the list of all posts for a given user</h1>
+<button class="back-link"><%= link_to "Go to user", user_path(@user.id) %></button>
+
+
+<div class="user-container">
+  <div class="container">
+    <div class="user">
+      <img src=<%= @user.photo %> class="user-photo">
+      <div class="user-info">
+        <h1 class="user-info__name"><%= @user.name %></h1>
+        <p class="user-info__posts-counter">Number of posts: <%= @user.posts_counter %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <% @posts.each do |post| %>
+      <div class="section-post">
+        <a href="/users/<%=@user.id %>/posts/<%= post.id %>" class="post-link"><h2 class="section-post__title"><%= post.title %></h2></a>
+        <p class="section-post__text"><%= post.text %></p>
+        <p class="section-post__counter">Comments: <%= post.comments_counter %> | Likes: <%= post.likes_counter %></p>
+      </div>
+
+        <ul class="section-post">
+        <% post.recent_comments.each do |comment| %>
+          <li class="comment"><%= @user.name %>: <%= comment.text %></li>
+        <% end %>
+        </ul>
+      <% end %>
+  </div>
+</div>

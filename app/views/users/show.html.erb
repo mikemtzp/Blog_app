@@ -1,1 +1,30 @@
-<h1>Here is a specific user for a given user id</h1>
+<button class="back-link"><%= link_to "Go to all users", users_path %></button>
+
+<div class="user-container">
+  <div class="container">
+    <div class="user">
+      <img src=<%= @user.photo %> class="user-photo">
+      <div class="user-info">
+        <h1 class="user-info__name"><%= @user.name %></h1>
+        <p class="user-info__posts-counter">Number of posts: <%= @user.posts_counter %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-bio">
+      <h2 class="section-bio__title">Bio</h2>
+      <p class="section-bio__text"><%= @user.bio %></p>
+    </div>
+
+    <% @user.recent_posts.each do |post| %>
+        <div class="section-post">
+          <h3 class="section-post__title"><%= post.title %></h3>
+          <p class="section-post__text"><%= post.text %></p>
+          <p class="section-post__counter">Comments: <%= post.comments_counter %> | Likes: <%= post.likes_counter %></p>
+        </div>
+    <% end %>
+
+    <button class="back-link"><%= link_to "See all posts", user_posts_path(@user.id) %></button>
+  </div>
+</div>

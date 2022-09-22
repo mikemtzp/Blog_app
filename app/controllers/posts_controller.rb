@@ -10,4 +10,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = Comment.all.find(params[:user_id])
   end
+
+  def new
+    @post = Post.new
+    
+  end
 end

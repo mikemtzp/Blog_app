@@ -1,0 +1,8 @@
+<%= form_with scope: :comment, url: user_post_comments_url(@user.id, @post.id), method: :post, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :text, 'Comment' %>
+    <%= f.text_area :text %>
+
+    <%= f.submit "Create comment" %>
+  </div>
+<% end %>

@@ -2,9 +2,15 @@
 
 <div class="section">
   <div class="section-post">
+    <div class="title-flex">
       <h1 class="section-post__title"><%= @post.title %> by <%= @user.name %></h1>
-      <p class="section-post__counter">Comments: <%= @post.comments_counter %> | Likes: <%= @post.likes_counter %></p>
-      <p class="section-post__text"><%= @post.text %></p>
+      <div>
+        <button class="comment-link"><%= link_to "Comment", new_user_post_comment_path(@user.id, @post.id) %></button>
+      </div>
+    </div>
+
+    <p class="section-post__counter">Comments: <%= @post.comments_counter %> | Likes: <%= @post.likes_counter %></p>
+    <p class="section-post__text"><%= @post.text %></p>
   </div>
 
     <ul class="section-post">

@@ -14,17 +14,17 @@ class PostsController < ApplicationController
   def new
     @user = current_user
     @post = Post.new
-    # respond_to do |format|
-    #   format.html { render :new, locals: { post: @post } }
-    # end
+    respond_to do |format|
+      format.html { render :new, locals: { post: @post } }
+    end
   end
 
   def create
     @user = current_user
     @post = @user.posts.new(post_params)
 
-    # respond_to do |format|
-    #   format.html do
+    respond_to do |format|
+      format.html do
         if @post.save
           flash[:success] = 'Post saved successfully'
           redirect_to user_path(@user.id)
@@ -32,8 +32,8 @@ class PostsController < ApplicationController
           flash.now[:error] = 'Error: Post could not be saved'
           render :new, locals: { post: @post }, status: 422
         end
-    #   end
-    # end
+      end
+    end
   end
 
   private

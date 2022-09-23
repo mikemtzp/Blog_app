@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
-  belongs_to :author, class_name: 'User'
-  has_many :likes, inverse_of: :post
-  has_many :comments, inverse_of: :post
+  belongs_to :author, class_name: 'User', foreign_key: :author_id
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :title, presence: true
   validates :title, length: { maximum: 250, too_long: '%<count> characters is the maximum allowed' }

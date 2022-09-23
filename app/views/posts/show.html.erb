@@ -1,11 +1,15 @@
-<button class="back-link"><%= link_to "Go to all posts", :back %></button>
+<button class="back-link"><%= link_to "Go to all posts", user_posts_path(@user.id) %></button>
 
 <div class="section">
   <div class="section-post">
     <div class="title-flex">
       <h1 class="section-post__title"><%= @post.title %> by <%= @user.name %></h1>
-      <div>
-        <button class="comment-link"><%= link_to "Comment", new_user_post_comment_path(@user.id, @post.id) %></button>
+      <div class="title-flex">
+        <button class="back-link"><%= link_to "Comment", new_user_post_comment_path(@user.id, @post.id) %></button>
+        
+        <%= form_with url: user_post_likes_url(@user, @post), method: 'post' do |f| %>
+          <%= f.submit 'Like', class: "back-link" %>
+        <% end %>
       </div>
     </div>
 

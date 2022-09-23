@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comments_params)
     @comment.author = @user
     @comment.post = @post
+
     respond_to do |format|
       format.html do
         if @comment.save
@@ -21,6 +22,7 @@ class CommentsController < ApplicationController
           redirect_to user_posts_path(@post.author)
         else
           flash.now[:error] = 'Error: Comment could not be saved'
+          render :new, locals: { comment: @comment }, status: 422
         end
       end
     end

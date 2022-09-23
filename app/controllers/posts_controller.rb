@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @posts = Post.where(author_id: @user.id).order('created_at DESC')
-    @comments = Comment.find(params[:user_id])
+    @comments = Comment.where(id: params[:user_id])
   end
 
   def show

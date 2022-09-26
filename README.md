@@ -49,19 +49,82 @@ Add the following gems into your `Gemfile` development and test groups:
 ```
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "database_cleaner"
   gem 'ffi'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
 end
 ```
 
+```
+group :development do
+  gem "web-console"
+  gem 'bullet'
+end
+```
+
 Install all gems `bundle install`
+
+Set up bullet gem by running: `bundle exec rails g bullet:install`
 
 Set up RSpec in your app and create the Spec folder `rails g rspec:install`
 
 Run the migration into your testing environment `rails db:migrate RAILS_ENV=test`
 
-Run all tests with description `rspec spec --format documentation`
+To see all tests with description run `rspec spec --format documentation`
+
+#### Capybara
+
+- Make sure your `spec/rails_helper` file has the following structure:
+
+```
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../../config/environment", __FILE__)
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+require "spec_helper"
+require "rspec/rails"
+# Add additional requires below this line. Rails is not loaded until this point!
+require "capybara/rspec"
+
+# Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+
+ActiveRecord::Migration.maintain_test_schema!
+
+Capybara.register_driver :selenium_chrome do |app|
+ Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.javascript_driver = :selenium_chrome
+RSpec.configure do |config|
+  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.use_transactional_fixtures = false
+  config.infer_spec_type_from_file_location!
+  config.filter_rails_from_backtrace!
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  # This block must be here, do not combine with the other `before(:each)` block.
+  # This makes it so Capybara can see the database.
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+end
+```
 
 ## 👤 Author
 

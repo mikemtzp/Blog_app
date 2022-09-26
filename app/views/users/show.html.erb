@@ -19,15 +19,15 @@
 
     <% @user.recent_posts.each do |post| %>
         <div class="section-post">
-          <h3 class="section-post__title"><%= post.title %></h3>
+          <a href="/users/<%=@user.id %>/posts/<%= post.id %>" class="post-link"><h2 class="section-post__title"><%= post.title %></h2></a>
           <p class="section-post__text"><%= post.text %></p>
           <p class="section-post__counter">Comments: <%= post.comments_counter %> | Likes: <%= post.likes_counter %></p>
         </div>
     <% end %>
 
     <div class="buttons-group">
-      <button class="back-link"><%= link_to "See all posts", user_posts_path(@user.id) %></button>
-      <button class="back-link"><%= link_to "New Post", new_user_post_path(@user.id) %></button>
+      <button class="back-link" id="all-posts"><%= link_to "See all posts", user_posts_path(@user.id) %></button>
+      <button class="back-link" id="new-post"><%= link_to "New Post", new_user_post_path(@user.id) %></button>
     </div>
   </div>
 </div>

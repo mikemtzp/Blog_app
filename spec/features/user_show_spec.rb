@@ -24,6 +24,12 @@ RSpec.describe 'user_show', type: :feature do
     expect(page).to have_content(user.bio)
   end
 
+  it 'should show the user\'s first 3 posts' do
+    expect(page).to have_content(posts[0].title)
+    expect(page).to have_content(posts[1].title)
+    expect(page).to have_content(posts[2].title)
+  end
+
   it 'should show a button that lets me view all of a user\'s posts' do
     button = page.find('button#all-posts')
     expect(button).to have_content('See all posts')

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'post_index', type: :feature do
   user = User.find_by(name: 'Tom')
-  post = Post.where(author_id: user.id).first
-  comment = Comment.where(post_id: post.id).first
+  post = Post.where(author_id: user.id).last
+  comment = post.recent_comments
 
   before(:each) do
     visit user_posts_path(user.id)
@@ -25,8 +25,16 @@ RSpec.describe 'post_index', type: :feature do
     expect(page).to have_content(post.title)
   end
 
+  it 'should show some of the post\'s body' do
+    expect(page).to have_content(post.text)
+  end
+
   it 'should show the first comments on a post' do
-    expect(page).to have_content(comment.text)
+    expect(page).to have_content(comment[0].text)
+    expect(page).to have_content(comment[1].text)
+    expect(page).to have_content(comment[2].text)
+    expect(page).to have_content(comment[3].text)
+    expect(page).to have_content(comment[4].text)
   end
 
   it 'should show how many comments a post has' do

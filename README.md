@@ -134,6 +134,12 @@ end
 - Twitter: [@mikemtzp](https://twitter.com/mikemtzp)
 - LinkedIn: [Mike Martínez](https://www.linkedin.com/in/mike-mart%C3%ADnez/)
 
+### Dafne Azzolina
+
+- GitHub: [@Daf98](https://github.com/Daf98)
+- Twitter: [@dafne_azzolina](https://twitter.com/dafne_azzolina)
+- LinkedIn: [dafne-azzolina](https://www.linkedin.com/in/dafne-azzolina/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!

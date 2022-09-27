@@ -1,6 +1,6 @@
 <% @users.each do |user| %>
 <div class="container">
-  <a href="/users/<%= user.id %>" class="user-link">
+  <a href="/users/<%= user.id %>" class="user-link" test_id="user-link">
   <div class="user">
     <img src=<%= user.photo %> class="user-photo">
     <div class="user-info">

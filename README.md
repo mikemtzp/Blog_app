@@ -4,6 +4,7 @@
 ## 🛠️ Built With
 
 - Ruby on Rails
+- RSpec
 
 ## 🧮 Prerequisites
 
@@ -12,6 +13,8 @@
 - Yarn
 - Ruby
 - Ruby on Rails
+- Bullet
+- Capybara
 
 ### Setup
 
@@ -49,19 +52,54 @@ Add the following gems into your `Gemfile` development and test groups:
 ```
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "database_cleaner"
   gem 'ffi'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
 end
 ```
 
+```
+group :development do
+  gem "web-console"
+  gem 'bullet'
+end
+```
+
+```
+group :test do
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "webdrivers"
+end
+```
+
 Install all gems `bundle install`
+
+Set up bullet gem by running: `bundle exec rails g bullet:install`
 
 Set up RSpec in your app and create the Spec folder `rails g rspec:install`
 
 Run the migration into your testing environment `rails db:migrate RAILS_ENV=test`
 
-Run all tests with description `rspec spec --format documentation`
+To see all tests with description run `rspec spec --format documentation`
+
+#### Capybara
+
+- Make sure to add `require "capybara/rspec"` in your `spec/rails_helper` file:
+
+```
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../../config/environment", __FILE__)
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+require "spec_helper"
+require "rspec/rails"
+# Add additional requires below this line. Rails is not loaded until this point!
+require "capybara/rspec"
+...
+end
+```
 
 ## 👤 Author
 
@@ -70,6 +108,12 @@ Run all tests with description `rspec spec --format documentation`
 - GitHub: [@mikemtzp](https://github.com/mikemtzp)
 - Twitter: [@mikemtzp](https://twitter.com/mikemtzp)
 - LinkedIn: [Mike Martínez](https://www.linkedin.com/in/mike-mart%C3%ADnez/)
+
+### Dafne Azzolina
+
+- GitHub: [@Daf98](https://github.com/Daf98)
+- Twitter: [@dafne_azzolina](https://twitter.com/dafne_azzolina)
+- LinkedIn: [dafne-azzolina](https://www.linkedin.com/in/dafne-azzolina/)
 
 ## 🤝 Contributing
 

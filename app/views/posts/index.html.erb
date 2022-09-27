@@ -21,10 +21,12 @@
       </div>
 
         <ul class="section-post">
-        <% post.recent_comments.each do |comment| %>
-          <li class="comment"><%= @user.name %>: <%= comment.text %></li>
+        <% post.recent_comments.includes(:author).each do |comment| %>
+          <li class="comment"><%= comment.author.name %>: <%= comment.text %></li>
         <% end %>
         </ul>
       <% end %>
+    <button class="back-link" id="all-posts"><%= link_to "Pagination", user_posts_path(@user.id) %></button>
   </div>
+  
 </div>

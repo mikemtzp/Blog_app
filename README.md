@@ -4,6 +4,7 @@
 ## 🛠️ Built With
 
 - Ruby on Rails
+- RSpec
 
 ## 🧮 Prerequisites
 
@@ -12,6 +13,8 @@
 - Yarn
 - Ruby
 - Ruby on Rails
+- Bullet
+- Capybara
 
 ### Setup
 

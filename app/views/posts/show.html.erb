@@ -17,9 +17,13 @@
     <p class="section-post__text"><%= @post.text %></p>
   </div>
 
-    <ul class="section-post">
-      <% @post.comments.each do |comment| %>
-        <li class="comment"><%= @user.name %>: <%= comment.text %></li>
-      <% end %>
-    </ul>
+  <ul class="section-post">
+    <% @post.comments.each do |comment| %>
+      <li class="comment"><%= @user.name %>: <%= comment.text %></li>
+    <% end %>
+  </ul>
+
+  <% if can? :destroy, @post %>
+    <%= button_to "Delete", destroy_user_post_path, method: :delete, class: "back-link" %>
+  <% end %>
 </div>

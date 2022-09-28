@@ -5,7 +5,7 @@
     <div class="title-flex">
       <h1 class="section-post__title"><%= @post.title %> by <%= @user.name %></h1>
       <div class="title-flex">
-        <button class="back-link"><%= link_to "Comment", new_user_post_comment_path(@user.id, @post.id) %></button>
+        <button class="back-link"><%= link_to "Comment", new_user_post_comment_url(@user.id, @post.id) %></button>
         
         <%= form_with url: user_post_likes_url(@user, @post), method: 'post' do |f| %>
           <%= f.submit 'Like', class: "back-link" %>
@@ -20,6 +20,9 @@
   <ul class="section-post">
     <% @post.comments.each do |comment| %>
       <li class="comment"><%= @user.name %>: <%= comment.text %></li>
+      <%# <% if can? :destroy, @comment %>
+        <%# <%= button_to "Delete", destroy_user_post_comment_path, method: :delete %> %>
+      <%# <% end %> %> %>
     <% end %>
   </ul>
 

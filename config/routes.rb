@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
   post 'users/:user_id/posts/:post_id/likes', to: 'likes#create', as: 'user_post_likes'
+  delete 'users/:user_id/posts/:id/', to: 'comments#destroy', as: 'destroy_user_post_comment'
   post 'users/:user_id/posts/:post_id/comments', to: 'comments#create', as: 'user_post_comments'
   get 'users/:user_id/posts/:post_id/new-comment', to: 'comments#new', as: 'new_user_post_comment'
   delete 'users/:user_id/posts/:id', to: 'posts#destroy', as: 'destroy_user_post'

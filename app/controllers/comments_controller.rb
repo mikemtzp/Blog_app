@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+
   def new
     @user = current_user
     @post = Post.find(params[:post_id])
@@ -28,9 +30,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    # @post = Comment.find(params[:id])
+    # @comment = Comment.find_by(id: :id)
+    @comment.destroy
+    flash[:success] = 'The comment was successfully destroyed.'
+  end
+
   private
 
   def comments_params
-    params.require(:comment).permit(:text, :author, :post)
+    params.require(:comment).permit(:text, :id)
   end
 end

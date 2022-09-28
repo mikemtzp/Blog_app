@@ -39,7 +39,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    # @user = current_user
     @post = Post.find(params[:id])
     @post.destroy
     flash[:success] = 'The post was successfully destroyed.'

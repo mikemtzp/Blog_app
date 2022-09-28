@@ -14,6 +14,7 @@ class Ability
     else
       can :read, :all
       can %i[create destroy], Post, author: user
+      can %i[create destroy], Comment, author: user
     end
 
     # return unless user.present?

@@ -39,15 +39,6 @@ class PostsController < ApplicationController
           render :new, locals: { post: @post }, status: 422
         end
       end
-      format.json do
-        if @post.save
-          flash[:success] = 'Post saved successfully'
-          redirect_to user_path(@user.id)
-        else
-          flash.now[:error] = 'Error: Post could not be saved'
-          render :json, locals: { post: @post }, status: 422
-        end
-      end
     end
   end
 

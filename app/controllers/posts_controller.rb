@@ -5,6 +5,10 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @posts = Post.where(author_id: @user.id).order('created_at DESC')
     @comments = Comment.where(id: params[:user_id])
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @posts }
+    end
   end
 
   def show
@@ -33,6 +37,15 @@ class PostsController < ApplicationController
         else
           flash.now[:error] = 'Error: Post could not be saved'
           render :new, locals: { post: @post }, status: 422
+        end
+      end
+      format.json do
+        if @post.save
+          flash[:success] = 'Post saved successfully'
+          redirect_to user_path(@user.id)
+        else
+          flash.now[:error] = 'Error: Post could not be saved'
+          render :json, locals: { post: @post }, status: 422
         end
       end
     end

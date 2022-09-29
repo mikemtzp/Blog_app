@@ -1,6 +1,15 @@
 class CommentsController < ApplicationController
   authorize_resource
 
+  def index
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:post_id])
+    @comments = Comment.where(post_id: @post.id).order('created_at DESC')
+    respond_to do |format|
+      format.json { render json: @comments }
+    end
+  end
+
   def new
     @user = current_user
     @post = Post.find(params[:post_id])

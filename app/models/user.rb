@@ -14,10 +14,9 @@ class User < ApplicationRecord
   ROLES = %i[admin default].freeze
 
   def is?(requested_role)
-    self.role == requested_role.to_s
+    role == requested_role.to_s
   end
 
-  # A method that returns the 3 most recent posts for a given user.
   def recent_posts
     Post.where(author_id: self).order('created_at DESC').limit(3)
   end

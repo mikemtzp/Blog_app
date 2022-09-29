@@ -18,15 +18,15 @@
   </div>
 
   <ul class="section-post">
-    <% @post.comments.each do |comment| %>
+    <% @post.comments.includes(:author).each do |comment| %>
       <li class="comment"><%= @user.name %>: <%= comment.text %></li>
-      <%# <% if can? :destroy, @comment %>
-        <%# <%= button_to "Delete", destroy_user_post_comment_path, method: :delete %> %>
-      <%# <% end %> %> %>
+      <% if can? :destroy, comment %>
+        <%= button_to "Delete", user_post_comment_path(comment.author, @post, comment), method: :delete %>
+      <% end %>
     <% end %>
   </ul>
 
   <% if can? :destroy, @post %>
-    <%= button_to "Delete", destroy_user_post_path, method: :delete, class: "back-link" %>
+    <%= button_to "Delete", user_post_path, method: :delete, class: "back-link" %>
   <% end %>
 </div>

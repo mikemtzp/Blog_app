@@ -1,15 +1,14 @@
 class CommentsController < ApplicationController
   authorize_resource
+  before_action :set_post, only: %i[index new create]
 
   def index
     @user = User.find(params[:user_id])
-    @post = Post.find(params[:post_id])
     @comments = Comment.where(post_id: @post.id).order('created_at DESC')
   end
 
   def new
     @user = current_user
-    @post = Post.find(params[:post_id])
     @comment = Comment.new
     respond_to do |format|
       format.html { render :new, locals: { comment: @comment } }
@@ -18,7 +17,6 @@ class CommentsController < ApplicationController
 
   def create
     @user = current_user
-    @post = Post.find(params[:post_id])
     @comment = Comment.new(comments_params)
     @comment.author = @user
     @comment.post = @post
@@ -47,5 +45,9 @@ class CommentsController < ApplicationController
 
   def comments_params
     params.require(:comment).permit(:text, :author, :post)
+  end
+
+  def set_post
+    @post = Post.find(params[:post_id])
   end
 end

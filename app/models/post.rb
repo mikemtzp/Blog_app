@@ -7,17 +7,20 @@ class Post < ApplicationRecord
   validates :title, length: { maximum: 250, too_long: '%<count> characters is the maximum allowed' }
   validates :comments_counter, :likes_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  after_save :update_post_counter
+  after_save :increment_posts_counter
+  after_destroy :decrement_posts_counter
 
-  # A method that returns the 5 most recent comments for a given post.
   def recent_comments
     Comment.where(post_id: self).order('created_at DESC').limit(5)
   end
 
   private
 
-  # A method that updates the posts counter for a user
-  def update_post_counter
+  def increment_posts_counter
     author.increment!(:posts_counter)
+  end
+
+  def decrement_posts_counter
+    author.decrement!(:posts_counter)
   end
 end

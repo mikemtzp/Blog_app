@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @user = User.find(params[:user_id])
     @posts = Post.where(author_id: @user.id).order('created_at DESC')
@@ -8,7 +10,7 @@ class PostsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
-    @comments = Comment.where(id: params[:user_id])
+    @comments = Comment.includes(:post).where(id: params[:user_id])
   end
 
   def new
@@ -34,6 +36,13 @@ class PostsController < ApplicationController
         end
       end
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    flash[:success] = 'The post was successfully destroyed.'
+    redirect_to user_posts_path
   end
 
   private

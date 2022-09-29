@@ -4,12 +4,16 @@ class Comment < ApplicationRecord
 
   validates :text, presence: true
 
-  after_save :update_comments_counter
+  after_save :increment_comments_counter
+  after_destroy :decrement_comments_counter
 
   private
 
-  # A method that updates the comments counter for a post.
-  def update_comments_counter
+  def increment_comments_counter
     post.increment!(:comments_counter)
+  end
+
+  def decrement_comments_counter
+    post.decrement!(:comments_counter)
   end
 end

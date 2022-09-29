@@ -5,9 +5,6 @@ class CommentsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = Post.find(params[:post_id])
     @comments = Comment.where(post_id: @post.id).order('created_at DESC')
-    respond_to do |format|
-      format.json { render json: @comments }
-    end
   end
 
   def new
@@ -34,13 +31,6 @@ class CommentsController < ApplicationController
         else
           flash.now[:error] = 'Error: Comment could not be saved'
           render :new, locals: { comment: @comment }, status: 422
-        end
-      end
-      format.json do
-        if @comment.save
-          render json: @comment, status: :created, location: @comment
-        else
-          render json: @comment.errors, status: :unprocessable_entity
         end
       end
     end

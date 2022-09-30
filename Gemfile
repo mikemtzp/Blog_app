@@ -5,9 +5,14 @@ ruby "3.1.2"
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+# For user authentication
 gem 'devise'
 
+# For user authorization
 gem 'cancancan'
+
+# For Token based authentication
+gem 'jwt'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"

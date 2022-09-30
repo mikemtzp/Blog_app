@@ -5,6 +5,9 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @posts = Post.where(author_id: @user.id).order('created_at DESC')
     @comments = Comment.where(id: params[:user_id])
+    respond_to do |format|
+      format.html { render :index }
+    end
   end
 
   def show

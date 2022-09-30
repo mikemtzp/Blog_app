@@ -5,6 +5,9 @@ ruby "3.1.2"
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+gem 'rswag-api'
+gem 'rswag-ui'
+
 # For user authentication
 gem 'devise'
 
@@ -66,6 +69,7 @@ group :development, :test do
   gem "database_cleaner"
   gem 'rspec-rails'
   gem 'rails-controller-testing'
+  gem 'rswag-specs'
 end
 
 group :development do

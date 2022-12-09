@@ -50,12 +50,25 @@ development:
 Add the following gems into your `Gemfile` development and test groups:
 
 ```
+gem 'rswag-api'
+gem 'rswag-ui'
+
+# For user authentication
+gem 'devise'
+
+# For user authorization
+gem 'cancancan'
+
+# For Token based authentication
+gem 'jwt'
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem "database_cleaner"
   gem 'ffi'
+  gem "database_cleaner"
   gem 'rspec-rails'
   gem 'rails-controller-testing'
+  gem 'rswag-specs'
 end
 ```
 
@@ -100,6 +113,9 @@ require "capybara/rspec"
 ...
 end
 ```
+
+### API Documentation
+- To access to the API documentation run `rails s` in yuor terminal an head to `http://localhost:3000/api-docs/index.html`
 
 ## 👤 Author
 

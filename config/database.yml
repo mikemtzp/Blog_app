@@ -24,7 +24,6 @@ default: &default
 development:
   <<: *default
   database: Blog_app_development
-  host: ''
   username: postgres
   password: postgres1
 
